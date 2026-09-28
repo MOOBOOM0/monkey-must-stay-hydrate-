@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ภารกิจดูแลเจ้าลิง 🐒💧</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: linear-gradient(160deg, #f7efff, #fff8fc 55%, #eef8ff);
+    color: #3d3445;
+  }
+  .card {
+    width: min(430px, 100%);
+    background: rgba(255,255,255,.88);
+    border: 1px solid rgba(150,120,170,.16);
+    border-radius: 28px;
+    padding: 34px 24px 28px;
+    text-align: center;
+    box-shadow: 0 18px 55px rgba(90,60,110,.12);
+    backdrop-filter: blur(10px);
+  }
+  .monkey { font-size: 72px; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 50% { transform: translateY(-7px) rotate(2deg); } }
+  h1 { margin: 12px 0 8px; font-size: 27px; }
+  .sub { margin: 0 auto 24px; line-height: 1.7; color: #746b78; }
+  .water {
+    font-size: 44px;
+    letter-spacing: 3px;
+    min-height: 58px;
+    margin: 8px 0 10px;
+  }
+  .count { font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+  button {
+    width: 100%;
+    border: 0;
+    border-radius: 17px;
+    padding: 15px 18px;
+    font-size: 17px;
+    font-weight: 750;
+    cursor: pointer;
+    background: #7d5aa6;
+    color: white;
+    box-shadow: 0 8px 20px rgba(125,90,166,.24);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  button:active { transform: scale(.98); box-shadow: none; }
+  .message {
+    min-height: 54px;
+    margin-top: 19px;
+    padding: 13px;
+    border-radius: 15px;
+    background: #faf6fd;
+    line-height: 1.6;
+  }
+  .tiny { margin-top: 22px; font-size: 12px; color: #9b929f; }
+  .heart { display:inline-block; animation: beat 1.5s infinite; }
+  @keyframes beat { 50% { transform: scale(1.15); } }
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="monkey">🐒</div>
+  <h1>วันนี้ลิงกินน้ำกี่แก้ว 💧</h1>
+  <p class="sub">
+    วันนี้ลิงกินน้ำกี่แก้วแล้ว? 🐒
+  </p>
+
+  <div class="water" id="water">💧</div>
+  <div class="count" id="count">วันนี้กินไป 0 แก้ว</div>
+
+  <button onclick="drink()">🥤 กินน้ำแล้ว!</button>
+
+  <div class="message" id="message">
+    กินแล้วก็กดเพิ่มได้เลย 💧
+  </div>
+
+  <div class="tiny">
+    💜
+  </div>
+</main>
+
+<script>
+  let glasses = 0;
+
+  const messages = [
+    "เก่งมาก เจ้าลิงได้รับน้ำแล้ว 1 แก้ว 🐒💧",
+    "ดีมากกก แต่ยังไม่อนุญาตให้หยุดกินนะ 👀",
+    "โอเค วันนี้ไตของเรายังมีความหวัง 😌",
+    "เยี่ยม! คนทำเว็บยิ้มแล้วหนึ่งที",
+    "เก่งมาก ไปใช้ชีวิตต่อได้เลย แต่แก้วต่อไปอย่าลืม 💜",
+    "ภารกิจสำเร็จอีกหนึ่งขั้น! 🥤✨"
+  ];
+
+  function drink() {
+    glasses++;
+    document.getElementById("count").textContent =
+      `วันนี้กินไป ${glasses} แก้ว`;
+
+    const shown = Math.min(glasses, 8);
+    document.getElementById("water").textContent =
+      "💧".repeat(shown);
+
+    const index = (glasses - 1) % messages.length;
+    document.getElementById("message").innerHTML =
+      messages[index];
+
+    if (glasses >= 8) {
+      document.getElementById("message").innerHTML =
+        "วันนี้ดูแลตัวเองดีมากแล้ว 🥹💜<br>พักได้เลย เจ้าลิงเก่งมาก!";
+    }
+  }
+</script>
+</body>
+</html>
